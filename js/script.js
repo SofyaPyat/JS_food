@@ -158,13 +158,14 @@ window.addEventListener('DOMContentLoaded', () => {
     //используем классы для табов
     
     class MenuCard {
-        constructor(src, altText, title, description, price, parentSelector) {
+        constructor(src, altText, title, description, price, parentSelector, ...calsses) {
             this.src = src;
             this.altText = altText;
             this.title = title;
             this.description = description;
             this.price = price;
             this.parent = document.querySelector(parentSelector);
+            this.calsses = calsses;
             this.transfer = 27;
             this.changeToUAH();
         }
@@ -175,6 +176,15 @@ window.addEventListener('DOMContentLoaded', () => {
 
         render() {
             const element = document.createElement('div');
+
+            if (this.calsses.length === 0) {
+                element.classList.add('menu__item');
+            } else {
+            this.calsses.forEach(className => {
+                element.classList.add(className);
+            })
+            }
+            element.classList
             element.innerHTML = `
                 <div class="menu__item">
                     <img src=${this.src} alt=${this.altText}>
